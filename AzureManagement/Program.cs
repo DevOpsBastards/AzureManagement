@@ -26,10 +26,16 @@ namespace AzureManagement
         //push to config service
 
         /// <summary>
-        /// 
+        /* 
+        SETX Azure-TenantID "<YOURTENANTID>"
+        SETX Azure-SubscriptionID "<YOURSUBSCRIPTIONID>"
+        SETX Azure-SubscriptionName "<YOURSUBSCRIPTIONNAME>"
+        SETX Azure-SpnApplicationId "<YOURSPNID>"
+        SETX Azure-SpnPassword "<YOURSPNPWD>"
+        */
         /// </summary>
         /// <example>
-        /// --apptype = "Web" --envtype = "Test" --companyabbrv "HUDSONWHEREISMYCARDUDE" --companyabbrv "IWG" --scaleemail  "hudsonscale@test.com"; --alertemail "hudsonAlert@test.com";
+        /// --apptype "Web" --envtype "Test" --appname "HUDSONWHEREISMYCARDUDE" --companyabbrv "DOB" --scaleemail "hudsonscale@test.com" --alertemail "hudsonAlert@test.com"
         /// </example>
         /// <param name="args"></param>
         public static void Main(string[] args)
