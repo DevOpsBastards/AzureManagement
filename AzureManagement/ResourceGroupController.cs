@@ -11,9 +11,13 @@ namespace AzureManagement
     public interface IResourceGroupController
     {
         IResourceGroup CreateResourceGroup(string resName, Region region);
+
+        IResourceGroup GetResourceGroupByName(string resName);
+
         IEnumerable<IResourceGroup> ListAllResourGroups();
         string CreateApplicationInsights(ICloudAppConfig appConfig);
         IAppServicePlan CreateAppServicePlan(ICloudAppConfig appconfig, IResourceGroup resgrp);
+        IAppServicePlan GetAppPlanByName(string resourceGroupName, string appServicePlanName);
     }
 
     public class ResourceGroupController : IResourceGroupController
@@ -36,6 +40,11 @@ namespace AzureManagement
             Logger.Info("Resource Group - Created");
             return resgrp;
 
+        }
+
+        public IResourceGroup GetResourceGroupByName(string resName)
+        {
+            return Program.Cloud.ResourceGroups.GetByName(resName);
         }
 
         public IEnumerable<IResourceGroup> ListAllResourGroups()
@@ -87,6 +96,13 @@ namespace AzureManagement
 
             Logger.Info("App Plan - Created");
             return appPlan;
+        }
+
+        public IAppServicePlan GetAppPlanByName(string resourceGroupName, string appServicePlanName)
+        {
+            var appPlan = Program.Cloud.AppServices.AppServicePlans.GetByResourceGroup(resourceGroupName, appServicePlanName);
+            return appPlan;
+
         }
     }
 }

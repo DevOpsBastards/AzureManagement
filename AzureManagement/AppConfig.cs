@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace AzureManagement
 {
     //TODO: way to big break it down!!!!
-    public interface ICloudConfig
+    public interface IAzureConfig
     {
         string TenantId { get; set; }
         string SubscriptionId { get; set; }
@@ -18,7 +18,7 @@ namespace AzureManagement
         void LoadConfigFromEnvironmentVariables();
     }
 
-    public class CloudConfig : ICloudConfig
+    public class CloudConfig : IAzureConfig
     {
         internal readonly ILogger Logger;
         public string TenantId { get; set; }

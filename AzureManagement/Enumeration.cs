@@ -5,6 +5,9 @@ using System.Reflection;
 
 namespace AzureManagement
 {
+    /// <summary>
+    /// https://github.com/HeadspringLabs/Enumeration/blob/master/Enumeration.cs
+    /// </summary>
     public abstract class Enumeration : IComparable
     {
         public int Value { get; }
@@ -17,7 +20,7 @@ namespace AzureManagement
 
         protected Enumeration() { }
 
-        public static IEnumerable<T> GetAll<T>() where T : Enumeration, new()
+        private static IEnumerable<T> GetAll<T>() where T : Enumeration, new()
         {
             var type = typeof(T);
             var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);

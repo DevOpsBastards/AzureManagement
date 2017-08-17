@@ -18,6 +18,10 @@ namespace AzureManagement.CommandLine
         [Option('o', "outputFile", Required = false, HelpText = "output file")]
         public string OutFilePath { get; set; }
 
+        [Option("Action", Required = true, HelpText = "Environment to configure")]
+        public string Action { get; set; }
+
+
         [Option('e', "envtype", Required = true, HelpText = "Environment to configure")]
         public string EnvironmentName { get; set; }
 

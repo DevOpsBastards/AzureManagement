@@ -15,10 +15,10 @@ namespace AzureManagement
 
     public class AlertRules : IAlertRules
     {
-        internal readonly ILogger Logger;
+        private readonly ILogger _logger;
         internal readonly IAzureManagementClientConfiguration AzureManagementClientConfiguration;
         //internal readonly IAlertRuleConfiguration AlertRuleConfig;
-        private ICloudAppConfig _appconfig;
+        private readonly ICloudAppConfig _appconfig;
 
         //public AlertRules(ILogger logger, ICloudAppConfig appconfig, IAlertRuleConfiguration alertRuleConfig)
         //{
@@ -31,7 +31,7 @@ namespace AzureManagement
 
         public AlertRules(ILogger logger, ICloudAppConfig appconfig)
         {
-            Logger = logger;
+            _logger = logger;
             _appconfig = appconfig;
         }
 
@@ -40,11 +40,11 @@ namespace AzureManagement
             using (var imc = new InsightsManagementClient(_appconfig.Creds) { SubscriptionId = _appconfig.SubscriptionId })
             {
 
-                Logger.Info("CreateAlertRule - Creating");
+                _logger.Info("CreateAlertRule - Creating");
 
                 var alertRuleRes = CreateAlertRuleFor500Errors(targetResUriWebSite, resgrp);
                 var x = imc.AlertRules.CreateOrUpdate(resgrp.Name, alertRuleRes.Name, alertRuleRes);
-                Logger.Info("CreateAlertRule - Created");
+                _logger.Info("CreateAlertRule - Created");
 
                 return x;
 
@@ -53,7 +53,7 @@ namespace AzureManagement
 
         private AlertRuleResource CreateAlertRuleFor500Errors(string resUri, IResourceGroup resGrpName)
         {
-            Logger.Info("CreateAlertRuleFor500Errors - Create");
+            _logger.Info("CreateAlertRuleFor500Errors - Create");
             var alertRuleConfig = (IAlertRuleConfiguration)_appconfig;
             var actions = ConfigureRuleAction(alertRuleConfig);
             var conditions = ConfigureRuleThresholds(resUri);
@@ -75,7 +75,7 @@ namespace AzureManagement
 
         private ThresholdRuleCondition ConfigureRuleThresholds(string resUri)
         {
-            Logger.Info("ThresholdRuleCondition - Create");
+            _logger.Info("ThresholdRuleCondition - Create");
 
             return new ThresholdRuleCondition()
             {
@@ -92,7 +92,7 @@ namespace AzureManagement
 
         private List<RuleAction> ConfigureRuleAction(IAlertRuleConfiguration ruleConfig)
         {
-            Logger.Info("RuleAction - Create");
+            _logger.Info("RuleAction - Create");
             return new List<RuleAction>
             {
                 new RuleEmailAction()
