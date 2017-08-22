@@ -145,12 +145,12 @@ namespace AzureManagement
             }
 
             //TODO: implement apigateway 
-            ////http://iwg-test-svc-compliance.azurewebsites.net/swagger/v1/swagger.json
-            //var apiGatewayName = "iwgtestgateway";
+            ////http://zzz-test-svc-AppNAME.azurewebsites.net/swagger/v1/swagger.json
+            //var apiGatewayName = "testgateway";
             //var apiGatewayResGrpName = "Api-Default-East-US-2";
-            //var apiName = "ItWorks.Api.HudsonTest";
+            //var apiName = "Api.HudsonTest";
             //var routeName = "HudsonTest";
-            //var serviceUrl = "http://iwg-test-web-hudsonwhereismycardude.azurewebsites.net";
+            //var serviceUrl = "http://test-web-hudsonwhereismycardude.azurewebsites.net";
             //var productToAdd = "Microservice";
             //var swaggerUrl = $"{serviceUrl}/swagger/v1/swagger.json";
             //var amc = new ApiManagementController(config, Logger, apiGatewayName, apiGatewayResGrpName);
